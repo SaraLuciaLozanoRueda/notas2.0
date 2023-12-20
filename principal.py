@@ -1,0 +1,30 @@
+import os
+import menus as menu
+import alumnos as st 
+
+alumnos={}
+isActive = True
+opMenu=0
+
+while (isActive) :
+    os.system("cls")
+    try:   
+        opMenu   = menu.menuPrincipal() 
+    except ValueError:
+        print("Error en el dato de ingreso")
+        os.system("pause")
+    else:
+        if(opMenu==1):
+            rta = "S"
+            while (rta in {"S","s"}):
+                    os.system("cls")
+                    alumnos.update(st.regAlumno())
+                    rta=input("Desea resgistrar otro alumno S(si) o N(no)").upper()
+        elif (opMenu==2):
+            codigo=input("Ingrese el codigo del estudiante a buscar :")
+            menu.menuNotas(st.buscar(codigo,alumnos))
+        elif (opMenu==3):
+            codAlumno = input("Ingrese el codigo a buscar")    
+            st.buscarAlumno(codAlumno,alumnos)
+        elif(opMenu==4):
+                isActive=False
